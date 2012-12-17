@@ -1,17 +1,15 @@
 (function() {
-  console.log(1);
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://yoric.github.com/Bugzilla-822407/img/large_image_from_wikipedia.jpg", true);
-  console.log(2);
+  xhr.open("GET", "img/large_image_from_wikipedia.jpg", true);
   xhr.responseType = "moz-blob";
-  console.log(3);
   xhr.onload = function() {
-    console.log(4);
     var reader = new FileReader();
     reader.onload = function() {
+      console.log("About to set src");
       document.getElementById("img").src = reader.result;
+      console.log("I have set src");
     };
-    reader.readAsDataURL(xhr.result);
+    reader.readAsDataURL(xhr.response);
   };
   xhr.send();
 })();
