@@ -17,17 +17,14 @@
     var delta = timestamp - previousStamp;
     maxDelta = Math.max(maxDelta, delta);
     previousStamp = timestamp;
-    if (countingDown) {
-      if (--framesCountdown <= 0) {
-        log("Test complete, max delta between "+
-            "frames: " + maxDelta + "ms");
-        return;
-      } else {
-        log("Responsiveness test in progress, current delta between " +
-          "frames is " + delta + "ms, max delta is " + maxDelta + "ms, " +
-            framesCountdown + " frames to go");
-      }
+    if (--framesCountdown <= 0) {
+      log("Test complete, max delta between "+
+         "frames: " + maxDelta + "ms");
+      return;
     }
+    log("Responsiveness test in progress, current delta between " +
+      "frames is " + delta + "ms, max delta is " + maxDelta + "ms, " +
+        framesCountdown + " frames to go");
     requestAnimationFrame(responsiveness);
   };
   requestAnimationFrame(responsiveness);
